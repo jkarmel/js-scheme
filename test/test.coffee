@@ -1,4 +1,5 @@
-{evaluate, tokenize} = require '../lisp'
+{evaluate, tokenize, readFrom, atom} = require '../lisp'
+_ = require 'underscore'
 assert = require 'assert'
 
 describe 'evaluate', ->
@@ -20,3 +21,13 @@ describe 'tokenize', ->
       res[2] == '1' and
       res[3] == '2'
       res[4] == ')'
+
+describe 'readFrom', ->
+  it 'should make (+ 1 2) into ["(", "+", "1", "2", ")"]', ->
+    assert readFrom(tokenize("(+ 1 2)")), ["+", "1", "2"]
+
+describe 'atom', ->
+  it 'should return an int when the token is an int', ->
+    assert 2, atom "2"
+  it 'should return the literal token value otherwise', ->
+    assert '+', atom '+'
