@@ -16,6 +16,8 @@ readFrom = (tokens) ->
 atom = (token) ->
   if parseInt token then parseInt token else token
 
+parse = (input) -> readFrom tokenize input
+
 exports.tokenize = tokenize
-exports.readFrom = readFrom
+exports.parse = parse
 exports.atom = atom
