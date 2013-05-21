@@ -16,13 +16,7 @@ describe 'tokenize', ->
     assert res.length == 1
     assert res[0] = "2"
   it 'should tokenize (+ 1 2) as ["(", "+", "1", "2", ")"]', ->
-    res = tokenize '(+ 1 2)'
-    assert res.length == 5
-    assert res[0] == '(' and
-      res[1] == '+' and
-      res[2] == '1' and
-      res[3] == '2'
-      res[4] == ')'
+    assert _.isEqual tokenize('(+ 1 2)'), ['(', '+', '1', '2', ')']
 
 describe 'parse', ->
   it 'should make (+ 1 2) into ["(", "+", "1", "2", ")"]', ->
