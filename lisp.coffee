@@ -18,6 +18,16 @@ atom = (token) ->
 
 parse = (input) -> readFrom tokenize input
 
+evaluate = (x) ->
+  if typeof x == 'number'
+    x
+  else
+    fns[x[0]].apply {}, x[1..]
+
+fns =
+  '+': (a, b) -> a + b
+
 exports.tokenize = tokenize
 exports.parse = parse
 exports.atom = atom
+exports.evaluate = evaluate
