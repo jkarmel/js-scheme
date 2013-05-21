@@ -1,4 +1,10 @@
-parse = (input) ->
-  parseInt input
+tokenize = (input) ->
+  input
+    .replace(/\(/g, " ( ")
+    .replace(/\)/g, " ) ")
+    .split(' ')
+    .filter (token) -> token != ''
 
-module.exports = parse
+
+exports.evaluate = evaluate
+exports.tokenize = tokenize
