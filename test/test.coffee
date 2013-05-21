@@ -7,6 +7,8 @@ describe 'evaluate', ->
     assert.equal 2, evaluate parse '2'
   it 'should evaluate (+ 1 2) to be 3', ->
     assert.equal 3, evaluate parse '(+ 1 2)'
+  it 'should evaluate (+ 1 (+ 1 1)) to be 3', ->
+    assert.equal 3, evaluate parse '(+ 1 (+ 1 1))'
 
 describe 'tokenize', ->
   it 'should tokenize 2 as ["2"]', ->

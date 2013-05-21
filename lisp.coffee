@@ -22,7 +22,8 @@ evaluate = (x) ->
   if typeof x == 'number'
     x
   else
-    fns[x[0]].apply {}, x[1..]
+    args = (evaluate(exp) for exp in x[1..])
+    fns[x[0]].apply {}, args
 
 fns =
   '+': (a, b) -> a + b
