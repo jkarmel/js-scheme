@@ -29,8 +29,8 @@ describe 'tokenize', ->
     assert _.isEqual tokenize('(+ 1 2)'), ['(', '+', '1', '2', ')']
 
 describe 'parse', ->
-  it 'should make (+ 1 2) into ["(", "+", "1", "2", ")"]', ->
-    assert parse("(+ 1 2)"), ["+", "1", "2"]
+  it 'should make (+ 1 2) into ["(", "+", "1", "2")"]', ->
+    assert.deepEqual parse("(+ 1 2)"), ["+", 1, 2]
   it 'should make (begin (+ 1 2) (+ 100 2) (+ 1 1)) into ["begin", ["+", 1, 2], ["+", 100, 2], ["+", 1 ,1]]', ->
     assert.deepEqual parse('(begin (+ 1 2) (+ 100 2) (+ 1 1))'), ["begin", ["+", 1, 2], ["+", 100, 2], ["+", 1, 1]]
 
