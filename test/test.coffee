@@ -14,6 +14,11 @@ describe 'ev', ->
     it 'should return 2 for a series of statements ending with (+ 1 1)', ->
       assert.deepEqual 2, ev '(begin (+ 1 2) (+ 100 2) (+ 1 1))'
 
+  describe 'set!', ->
+    it 'should set a variable that can be used later', ->
+      ev '(set! x 3)'
+      assert.equal 3, ev 'x'
+
 
 describe 'tokenize', ->
   it 'should tokenize 2 as ["2"]', ->

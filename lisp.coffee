@@ -24,6 +24,11 @@ parse = (input) -> readFrom tokenize input
 evaluate = (x) ->
   if typeof x == 'number'
     x
+  else if typeof x == 'string'
+    env[x]
+  else if x[0] == 'set!'
+    [_, varName, exp] = x
+    env[varName] = evaluate exp
   else if x[0] == 'begin'
     for exp in x[1..]
       val = evaluate exp
@@ -32,6 +37,8 @@ evaluate = (x) ->
     args = (evaluate(exp) for exp in x[1..])
     env[x[0]].apply {}, args
 
+ev = (input) -> evaluate parse input
+
 env =
   '+': (a, b) -> a + b
 
@@ -39,4 +46,4 @@ exports.tokenize = tokenize
 exports.parse = parse
 exports.atom = atom
 exports.evaluate = evaluate
-exports.ev = (input) -> evaluate parse input
+exports.ev = ev
